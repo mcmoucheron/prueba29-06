@@ -2,13 +2,19 @@
 
 <h1>Tweets</h1>
 
+#Agregamos el formulario utilizando el helper form_with
+
+<%= form_with url: tweets_path, method: :get do |form|%>
+  <%= form.text_field :query_text, placeholder: t('Query text'), value: params[:query_text]%>
+<%end%>
+
 <div id="tweets">
   <% @tweets.each do |tweet| %>
     <%= render tweet %>
     <p>
       <%= link_to "Show this tweet", tweet %>
     </p>
-  <% end %>
-</div>
+  <%end %>
+ </div>
 
 <%= link_to "New tweet", new_tweet_path %>

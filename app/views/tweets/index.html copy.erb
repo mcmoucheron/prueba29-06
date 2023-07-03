@@ -1,0 +1,30 @@
+<h1>Tweets</h1>
+<h1>Tweets</h1>
+
+<div class="container">
+  <div class="row">
+    <% @tweets.each_slice(3) do |tweets_group| %>
+      <% tweets_group.each do |tweet| %>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title"><%= tweet.username %></h5>
+              <p class="card-text"><%= tweet.description %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-4">
+      <%= link_to "New tweet", new_tweet_path, class: "btn btn-primary" %>
+    </div>
+    <div class="col-md-8 text-end">
+      <%= raw pagy_nav(@pagy) %>
+    </div>
+  </div>
+</div>

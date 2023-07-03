@@ -1,12 +1,28 @@
-<div id="<%= dom_id tweet %>">
-  <p>
-    <strong>Description:</strong>
-    <%= tweet.description %>
-  </p>
+<div class="container mt-3">
+  <div class="row">
+    <% @tweets.each_slice(3) do |tweets_group| %>
+      <% tweets_group.each do |tweet| %>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title"><%= tweet.username %></h5>
+              <p class="card-text"><%= tweet.description %></p>
+              <%= link_to "Edit", edit_tweet_path(tweet), class: "btn btn-primary me-2" %>
+              <%= button_to "Delete", tweet, class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure you want to delete this tweet?" } %>
+            </div>
+            <div class="card-footer text-muted text-center">
+              <small><%= tweet.updated_at.strftime("%Y-%m-%d %H:%M") %></small>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 
-  <p>
-    <strong>Username:</strong>
-    <%= tweet.username %>
-  </p>
-
+  <div class="d-flex justify-content-center mt-3">
+    <%= link_to "New tweet", new_tweet_path, class: "btn btn-primary me-2" %>
+    <nav aria-label="Page navigation">
+      <!-- Pagination code -->
+    </nav>
+  </div>
 </div>
